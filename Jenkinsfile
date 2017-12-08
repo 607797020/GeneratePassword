@@ -22,7 +22,10 @@ pipeline {
 	
 	stage('Deployment') {
       steps {
-        sh '''java weblogic.Deployer -debug -remote -verbose -noexit -name GeneratePassword -targets managed2_dnpwls001 -adminurl t3://10.50.142.42:61070 -user weblogic -undeploy java weblogic.Deployer -debug -stage -remote -verbose -upload -name GeneratePassword -source ./GeneratePassword/target/GeneratePasswordRS-V1.war -targets managed2_dnpwls001 -adminurl t3://10.50.142.42:61070 -user weblogic -deploy'''
+        sh 'java weblogic.Deployer -debug -remote -verbose -noexit -name GeneratePassword -targets managed2_dnpwls01 -adminurl t3://172.17.0.2:61000 -user weblogic -undeploy'
+      }
+	  steps {
+        sh 'java weblogic.Deployer -debug -stage -remote -verbose -upload -name GeneratePassword -source ./GeneratePassword/target/GeneratePasswordRS-V1.war -targets managed2_dnpwls01 -adminurl t3://172.17.0.2:61000 -user weblogic -deploy'
       }
     }
 	
