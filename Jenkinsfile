@@ -18,8 +18,8 @@ pipeline {
     }
     stage('Deployment') {
       steps {
-        sh 'java -cp /home/jenkins/wls/wlfullclient.jar weblogic.Deployer -debug -remote -verbose -noexit -name GeneratePassword -targets managed2_dnpwls01 -adminurl t3://172.17.0.2:61000 -userconfigfile /home/jenkins/wls/configuration.xml -user weblogic -password dnpwls02 -undeploy'
-        sh 'java -cp /home/jenkins/wls/wlfullclient.jar weblogic.Deployer -debug -stage -remote -verbose -upload -name GeneratePassword -source ./GeneratePassword/target/GeneratePasswordRS-V1.war -targets managed2_dnpwls01 -adminurl t3://172.17.0.2:61000 -userconfigfile /home/jenkins/wls/configuration.xml -user weblogic -password dnpwls02 -deploy'
+        sh 'java -cp /home/jenkins/wls/wlfullclient.jar weblogic.Deployer -debug -remote -verbose -noexit -name GeneratePassword -targets managed2_dnpwls01 -adminurl t3://172.17.0.3:61000 -userconfigfile /home/jenkins/wls/configuration.xml -user weblogic -password dnpwls02 -undeploy'
+        sh 'java -cp /home/jenkins/wls/wlfullclient.jar weblogic.Deployer -debug -stage -remote -verbose -upload -name GeneratePassword -source ./GeneratePassword/target/GeneratePasswordRS-V1.war -targets managed2_dnpwls01 -adminurl t3://172.17.0.3:61000 -userconfigfile /home/jenkins/wls/configuration.xml -user weblogic -password dnpwls02 -deploy'
       }
     }
   }
